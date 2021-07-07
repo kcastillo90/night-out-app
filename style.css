@@ -1,7 +1,51 @@
-.restaurants {
-  width: 40vw;
-  height: 40vh; /* Temp? */
+body {
+  display: flex;
+  background: cyan;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  text-align: center;
+  font-family: 'Tourney', cursive;
+  font-size: 70px;
+  background: ghostwhite;
+  margin: 20px;
+  padding: 10px 0;
+  width: 444px;
+  border: 2px solid seagreen;
+}
+
+form {
+  text-align: center;
+  margin-bottom: 5vh;
+}
+
+.content-container {
+  width: 70vw;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  font-family: 'Yomogi', cursive;
+}
+
+.carousel-container {
+  width: auto;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 20px;
   border: 1px solid gray;
+}
+
+button {
+  width: 70px;
+  height: 25px;
 }
 
 
@@ -11,4 +55,14 @@
 
 #restaurant_carousel div:first-of-type {
   display: block;
+  text-align: center;
+}
+
+dt {
+  margin: 10px;
+}
+
+dd {
+  padding-left: 0;
+  margin-left: 0;
 }

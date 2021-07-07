@@ -4,6 +4,12 @@
         <meta charset="utf-8">
         <title>Night Out</title>
         <link rel="stylesheet" href="style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Tourney:ital,wght@1,300&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Yomogi&display=swap" rel="stylesheet">
         <script src="https://code.jquery.com/jquery-3.5.1.min.js" charset="utf-8"></script>
         <script src="app.js" charset="utf-8"></script>
     </head>
@@ -13,10 +19,24 @@
           <input type="text" placeholder="Enter zip code here">
           <input type="submit" value="Submit">
       </form>
-      <button type="button" id="prev">Previous</button>
-      <div id='restaurant_carousel'>
-
+      <div class="content-container">
+        <button type="button" id="prev">Previous</button>
+        <div class="carousel-container">
+          <div id='restaurant_carousel'>
+            <div>
+              <dt>sample restaurant name</dt>
+              <dl>
+                <dd>sample cuisine</dd>
+                <dd>sample price</dd>
+                <dd>sample hours</dd>
+                <dd>sample website</dd>
+                <dd>sample phone</dd>
+                <dd>sample address</dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+        <button type="button" id='next'>Next</button>
       </div>
-      <button type="button" id='next'>Next</button>
     </body>
 </html>

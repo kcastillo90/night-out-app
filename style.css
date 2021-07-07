@@ -3,3 +3,12 @@
   height: 40vh; /* Temp? */
   border: 1px solid gray;
 }
+
+
+#restaurant_carousel div {
+  display: none;
+}
+
+#restaurant_carousel div:first-of-type {
+  display: block;
+}

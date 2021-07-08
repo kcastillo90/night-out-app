@@ -99,6 +99,30 @@ $(() => {
 
   // Night In
 
+  $.ajax({
+    url: 'https://api.spoonacular.com/recipes/random?apiKey=e188e1e8977c41cabb948fe83c569f5c&number=1&limitLicense=true',
 
+
+
+
+  }).then(
+    (recipes) => {
+      console.log(recipes.recipes);
+
+      for(i = 0; i < recipes.recipes.length; i++) {
+        const $recipeDiv = $('<div>').attr('id', `${recipes.recipes[i].title}`).appendTo($('#recipe_carousel'))
+        const $recipeImg = $(`<img src='${recipes.recipes[i].image}'>`).appendTo($recipeDiv)
+          const $recipe = $('<dt>').attr('id', `${recipes.recipes[i].title}`).text(`${recipes.recipes[i].title}`).appendTo($recipeDiv)
+          const $recipeDetails = $('<dl>').appendTo($recipeDiv)
+            // const $recipeSum = $('<dd>').text(`${recipes.recipes[i].summary}`).appendTo($recipeDetails)
+            const $recipeSiteDD = $('<dd>').appendTo($recipeDetails).appendTo($recipeDetails)
+            const $recipeSite = $('<a>').attr('href', `${recipes.recipes[i].sourceUrl}`).text(`Link to recipe`).appendTo($recipeSiteDD)
+            const $recipeCredit = $('<dd>').text(`Credits: ${recipes.recipes[i].creditsText}`).appendTo($recipeDetails)
+      }
+
+      
+
+    }
+  )
 
 })

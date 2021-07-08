@@ -85,6 +85,11 @@ dd {
   margin: 10px;
   text-align: center;
   font-size: 2vh;
+  overflow-wrap: normal;
+}
+
+a {
+  overflow-wrap: anywhere;
 }
 
 .button {

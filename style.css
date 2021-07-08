@@ -107,7 +107,7 @@ a {
   border: none;
 }
 
-@media (min-width: 700px) {
+@media (min-width: 1000px) {
   html {
     background-image: url('https://cdn.wallpapersafari.com/18/45/InHrMB.jpg');
     background-size: center;

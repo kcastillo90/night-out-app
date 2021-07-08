@@ -9,11 +9,13 @@ h1 {
   text-align: center;
   font-family: 'Tourney', cursive;
   font-size: 70px;
-  background: ghostwhite;
+  background: lightslategray;
   margin: 20px;
   padding: 10px 0;
   width: 444px;
-  border: 2px solid seagreen;
+  border: 4px solid ivory;
+  border-radius: 10%;
+  color: ivory;
 }
 
 form {
@@ -22,7 +24,7 @@ form {
 }
 
 .content-container {
-  width: 70vw;
+  width: 100vw;
   height: auto;
   display: flex;
   flex-direction: row;
@@ -43,12 +45,6 @@ form {
   border: 1px solid gray;
 }
 
-button {
-  width: 70px;
-  height: 25px;
-}
-
-
 #restaurant_carousel div {
   display: none;
 }
@@ -60,9 +56,24 @@ button {
 
 dt {
   margin: 10px;
+  text-align: center;
 }
 
 dd {
-  padding-left: 0;
-  margin-left: 0;
+  margin: 10px;
+  text-align: center;
+}
+
+.button {
+  width: 100px;
+  height: 70px;
+  background: lightgray;
+  border: none;
+}
+
+.pressedButton {
+  width: 100px;
+  height: 70px;
+  background: lightgoldenrodyellow;
+  border: none;
 }

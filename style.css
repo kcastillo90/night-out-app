@@ -68,7 +68,7 @@ form {
 
 .carousel-container {
   width: 70vw;
-  height: 40vh;
+  height: auto;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -202,7 +202,7 @@ img {
 
   .carousel-container {
     width: 60%;
-    height: 40vh;
+    height: auto;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -210,6 +210,16 @@ img {
     border: 1px solid gray;
   }
 
-}
+  /* NIGHT IN */
 
-/* NIGHT IN */
+  .night-in-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  img {
+    margin: 10px auto;
+    width: 80%; 
+  }
+}

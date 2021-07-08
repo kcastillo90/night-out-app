@@ -100,7 +100,7 @@ $(() => {
   // Night In
 
   $.ajax({
-    url: 'https://api.spoonacular.com/recipes/random?apiKey=e188e1e8977c41cabb948fe83c569f5c&number=1&limitLicense=true',
+    url: 'https://api.spoonacular.com/recipes/random?apiKey=e188e1e8977c41cabb948fe83c569f5c&number=10&limitLicense=true',
 
 
 
@@ -114,13 +114,55 @@ $(() => {
         const $recipeImg = $(`<img src='${recipes.recipes[i].image}'>`).appendTo($recipeDiv)
           const $recipe = $('<dt>').attr('id', `${recipes.recipes[i].title}`).text(`${recipes.recipes[i].title}`).appendTo($recipeDiv)
           const $recipeDetails = $('<dl>').appendTo($recipeDiv)
-            // const $recipeSum = $('<dd>').text(`${recipes.recipes[i].summary}`).appendTo($recipeDetails)
+            const $recipeSum = $('<dd>').html(`${recipes.recipes[i].summary}`).appendTo($recipeDetails)
             const $recipeSiteDD = $('<dd>').appendTo($recipeDetails).appendTo($recipeDetails)
             const $recipeSite = $('<a>').attr('href', `${recipes.recipes[i].sourceUrl}`).text(`Link to recipe`).appendTo($recipeSiteDD)
             const $recipeCredit = $('<dd>').text(`Credits: ${recipes.recipes[i].creditsText}`).appendTo($recipeDetails)
       }
 
-      
+      // Carousel next and previous buttons:
+      let $currentRecipe = 0
+      // will be index of recipe array once it's generated (starting at 0)
+      let $numOfRecipes = $('#recipe_carousel').children().length - 1
+      console.log(`Number of recipes = ${$numOfRecipes}`);
+      // creates an array out of the recipe list
+      const $recipesTotal = $('#recipe_carousel').children()
+      console.log($recipesTotal);
+
+      // Next button:
+      $('#next_recipe').on('click', () => {
+        $('#next_recipe').addClass('pressedButton')
+        setTimeout(() => {
+          $('#next_recipe').removeClass('pressedButton')
+        }, 250)
+        $recipesTotal.eq($currentRecipe).css('display', 'none')
+        if($currentRecipe < $numOfRecipes) {
+          $currentRecipe++
+        } else {
+          $currentRecipe = 0
+        }
+
+        $recipesTotal.eq($currentRecipe).css('display', 'flex').css('flex-direction', 'column').css('align-content', 'center')
+
+      })
+
+      $('#prev_recipe').on('click', () => {
+        $('#prev_recipe').addClass('pressedButton')
+        setTimeout(() => {
+          $('#prev_recipe').removeClass('pressedButton')
+        }, 250)
+        $recipesTotal.eq($currentRecipe).css('display', 'none')
+        if($currentRecipe > 0) {
+          $currentRecipe--
+        } else {
+          $currentRecipe = $numOfRecipes
+        }
+
+        $recipesTotal.eq($currentRecipe).css('display', 'block')
+
+      })
+
+
 
     }
   )

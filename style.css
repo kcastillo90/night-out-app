@@ -1,6 +1,6 @@
 body {
   display: flex;
-  background: cyan;
+  background: whitesmoke;
   flex-direction: column;
   align-items: center;
 }
@@ -115,7 +115,7 @@ a {
   body {
     display: flex;
     margin: auto;
-    background: cyan;
+    background: whitesmoke;
     background-size: cover;
     flex-direction: column;
     align-items: center;

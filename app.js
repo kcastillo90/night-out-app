@@ -1,5 +1,6 @@
 $(() => {
 
+  // Night Out
   const $getRestaurants = (e) => {
 
     let $zip = $('input[type="text"]').val() // assigns zip to API URL
@@ -96,7 +97,7 @@ $(() => {
     $getRestaurants()
   })
 
-
+  // Night In
 
 
 

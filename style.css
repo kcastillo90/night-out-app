@@ -5,6 +5,15 @@ body {
   align-items: center;
 }
 
+/* NIGHT OUT */
+
+.night-out-container {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  align-items: center;
+}
+
 h1 {
   text-align: center;
   font-family: 'Tourney', cursive;
@@ -98,6 +107,7 @@ a {
   height: 70px;
   background: lightgray;
   border: none;
+  margin: 0 5px;
 }
 
 .pressedButton {
@@ -178,3 +188,5 @@ a {
   }
 
 }
+
+/* NIGHT IN */

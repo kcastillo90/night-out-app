@@ -78,11 +78,13 @@ form {
 dt {
   margin: 10px;
   text-align: center;
+  font-size: 2vh;
 }
 
 dd {
   margin: 10px;
   text-align: center;
+  font-size: 2vh;
 }
 
 .button {

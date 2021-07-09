@@ -14,32 +14,41 @@
         <script src="app.js" charset="utf-8"></script>
     </head>
     <body>
-      <div class="night-out-container">
-        <h1>Night Out</h1>
-        <h4>For when you need a little help planning your evening (Click "Night Out" to see options for a night in!)</h4>
-        <form>
-            <input type="text" placeholder="Enter zip code" class="zip">
-            <input type="submit" value="Submit" class="zip_submit" id="zip_submitID">
-        </form>
-        <div class="content-container">
-          <button type="button" class="button" id="prev">Previous</button>
-          <div class="carousel-container">
-            <div id='restaurant_carousel'></div>
+      <div class="flip-container">
+        <!-- Container to facilitate flip effect -->
+        <div class="flip-container-inner">
+          <div class="flip-front">
+            <div class="night-out-container">
+              <h1 id="night-out-h1">Night Out</h1>
+              <h4>For when you need a little help planning your evening (Click "Night Out" to see options for a night in!)</h4>
+              <form>
+                  <input type="text" placeholder="Enter zip code" class="zip">
+                  <input type="submit" value="Submit" class="zip_submit" id="zip_submitID">
+              </form>
+              <div class="content-container">
+                <button type="button" class="button" id="prev">Previous</button>
+                <div class="carousel-container">
+                  <div id='restaurant_carousel'></div>
+                </div>
+                <button type="button" class="button" id='next'>Next</button>
+              </div>
+            </div>
           </div>
-          <button type="button" class="button" id='next'>Next</button>
-        </div>
-      </div>
-      <div class="night-in-container">
-        <h1 class="header-shown">Night In</h1>
-        <h4>For when you need a little help planning your evening (Click "Night In" to see options for a night out!)</h4>
-        <button type="button" name="get-recipes" class="button" id="get-recipes">Get Recipes</button>
-        <div class="content-container">
-          <button type="button" class="button" id="prev_recipe">Previous</button>
-          <div class="carousel-container">
-            <div id="recipe_carousel"></div>
+            <div class="flip-back">
+              <div class="night-in-container">
+                <h1 class="header-shown" id="night-in-h1">Night In</h1>
+                <h4>For when you need a little help planning your evening (Click "Night In" to see options for a night out!)</h4>
+                <button type="button" name="get-recipes" class="button" id="get-recipes">Get Recipes</button>
+                <div class="content-container">
+                  <button type="button" class="button" id="prev_recipe">Previous</button>
+                  <div class="carousel-container">
+                    <div id="recipe_carousel"></div>
+                  </div>
+                  <button type="button" class="button" id="next_recipe">Next</button>
+                </div>
+              </div>
+            </div>
           </div>
-          <button type="button" class="button" id="next_recipe">Next</button>
         </div>
-      </div>
     </body>
 </html>

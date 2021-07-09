@@ -182,25 +182,44 @@ $(() => {
 
   })
 
-  $('h1').on('click', (e) => {
+  // $('h1').on('click', (e) => {
+  //   e.preventDefault()
+  //
+  //   if($('.night-out-container').css('display') === 'flex') {
+  //
+  //     $('.night-out-container').css('display', 'none')
+  //     $('.night-in-container').css('display', 'flex')
+  //     // $('body').css('height', '')
+  //     // $('body').css('height', 'auto')
+  //
+  //   } else{
+  //
+  //     $('.night-in-container').css('display', 'none')
+  //     $('.night-out-container').css('display', 'flex')
+  //     // $('body').css('height', '')
+  //     // $('body').css('height', '100vh')
+  //   }
+  // })
+
+  $('#night-out-h1').on('click', (e) => {
     e.preventDefault()
 
-    if($('.night-out-container').css('display') === 'flex') {
+    $('.flip-container-inner').css('transform', 'rotateY(180deg)')
+    $('.flip-front').css('visibility', 'hidden')
+    $('.flip-back').css('backface-visibility', 'visible')
 
-      $('.night-out-container').css('display', 'none')
-      $('.night-in-container').css('display', 'flex')
-      // $('body').css('height', '')
-      // $('body').css('height', 'auto')
 
-    } else{
-
-      $('.night-in-container').css('display', 'none')
-      $('.night-out-container').css('display', 'flex')
-      // $('body').css('height', '')
-      // $('body').css('height', '100vh')
-    }
   })
 
+  $('#night-in-h1').on('click', (e) => {
+    e.preventDefault()
+
+    $('.flip-container-inner').css('transform', 'rotateY(0deg)')
+    $('.flip-front').css('visibility', 'visible')
+    $('.flip-back').css('backface-visibility', 'hidden')
+
+
+  })
 
 
 })

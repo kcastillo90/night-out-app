@@ -175,50 +175,29 @@ $(() => {
 
     $('#recipe_carousel').empty()
 
-    // $('body').css('height', '')
-    // $('body').css('height', 'auto')
-
     $getRecipes()
 
   })
 
-  // $('h1').on('click', (e) => {
-  //   e.preventDefault()
-  //
-  //   if($('.night-out-container').css('display') === 'flex') {
-  //
-  //     $('.night-out-container').css('display', 'none')
-  //     $('.night-in-container').css('display', 'flex')
-  //     // $('body').css('height', '')
-  //     // $('body').css('height', 'auto')
-  //
-  //   } else{
-  //
-  //     $('.night-in-container').css('display', 'none')
-  //     $('.night-out-container').css('display', 'flex')
-  //     // $('body').css('height', '')
-  //     // $('body').css('height', '100vh')
-  //   }
-  // })
-
+  // Event listeners to control flipping of app from night-out to night-in
   $('#night-out-h1').on('click', (e) => {
     e.preventDefault()
 
+  // Flips container holding all site content
     $('.flip-container-inner').css('transform', 'rotateY(180deg)')
+  // Changes visiblity of front (Night Out) to hidden
     $('.flip-front').css('visibility', 'hidden')
+  // Changes visibility of back (Night In) to visible
     $('.flip-back').css('backface-visibility', 'visible')
-
-
   })
 
+  // Performs the opposite of event listener above
   $('#night-in-h1').on('click', (e) => {
     e.preventDefault()
 
     $('.flip-container-inner').css('transform', 'rotateY(0deg)')
     $('.flip-front').css('visibility', 'visible')
     $('.flip-back').css('backface-visibility', 'hidden')
-
-
   })
 
 

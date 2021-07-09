@@ -54,7 +54,7 @@ $(() => {
             $('#next').addClass('pressedButton')
             setTimeout(() => {
               $('#next').removeClass('pressedButton')
-            }, 250)
+            }, 150)
             $restaurantsTotal.eq($currentRestaurant).css('display', 'none')
             if($currentRestaurant < $numOfRestaurants) {
               $currentRestaurant++
@@ -70,7 +70,7 @@ $(() => {
             $('#prev').addClass('pressedButton')
             setTimeout(() => {
               $('#prev').removeClass('pressedButton')
-            }, 250)
+            }, 150)
             $restaurantsTotal.eq($currentRestaurant).css('display', 'none')
             if($currentRestaurant > 0) {
               $currentRestaurant--
@@ -81,90 +81,120 @@ $(() => {
             $restaurantsTotal.eq($currentRestaurant).css('display', 'block')
 
           })
-
-
       })
+  }         // End of get recipes function
 
 
-
-  }
-
-
-
+  // Form submit to activate restaurant retrieval
   $('form').on('submit', (e) => {
     e.preventDefault()
 
     $getRestaurants()
+
   })
 
   // Night In
 
-  $.ajax({
-    url: 'https://api.spoonacular.com/recipes/random?apiKey=e188e1e8977c41cabb948fe83c569f5c&number=10&limitLicense=true',
+  const $getRecipes = (ev) => {
 
+    $.ajax({
+      url: 'https://api.spoonacular.com/recipes/random?apiKey=e188e1e8977c41cabb948fe83c569f5c&number=10&limitLicense=true',
 
+    }).then(
+      (recipes) => {
+        console.log(recipes.recipes);
 
-
-  }).then(
-    (recipes) => {
-      console.log(recipes.recipes);
-
-      for(i = 0; i < recipes.recipes.length; i++) {
-        const $recipeDiv = $('<div>').attr('id', `${recipes.recipes[i].title}`).appendTo($('#recipe_carousel'))
-        const $recipeImg = $(`<img src='${recipes.recipes[i].image}'>`).appendTo($recipeDiv)
-          const $recipe = $('<dt>').attr('id', `${recipes.recipes[i].title}`).text(`${recipes.recipes[i].title}`).appendTo($recipeDiv)
-          const $recipeDetails = $('<dl>').appendTo($recipeDiv)
-            const $recipeSum = $('<dd>').html(`${recipes.recipes[i].summary}`).appendTo($recipeDetails)
-            const $recipeSiteDD = $('<dd>').appendTo($recipeDetails).appendTo($recipeDetails)
-            const $recipeSite = $('<a>').attr('href', `${recipes.recipes[i].sourceUrl}`).text(`Link to recipe`).appendTo($recipeSiteDD)
-            const $recipeCredit = $('<dd>').text(`Credits: ${recipes.recipes[i].creditsText}`).appendTo($recipeDetails)
-      }
-
-      // Carousel next and previous buttons:
-      let $currentRecipe = 0
-      // will be index of recipe array once it's generated (starting at 0)
-      let $numOfRecipes = $('#recipe_carousel').children().length - 1
-      console.log(`Number of recipes = ${$numOfRecipes}`);
-      // creates an array out of the recipe list
-      const $recipesTotal = $('#recipe_carousel').children()
-      console.log($recipesTotal);
-
-      // Next button:
-      $('#next_recipe').on('click', () => {
-        $('#next_recipe').addClass('pressedButton')
-        setTimeout(() => {
-          $('#next_recipe').removeClass('pressedButton')
-        }, 250)
-        $recipesTotal.eq($currentRecipe).css('display', 'none')
-        if($currentRecipe < $numOfRecipes) {
-          $currentRecipe++
-        } else {
-          $currentRecipe = 0
+        for(i = 0; i < recipes.recipes.length; i++) {
+          const $recipeDiv = $('<div>').attr('id', `${recipes.recipes[i].title}`).appendTo($('#recipe_carousel'))
+          const $recipeImg = $(`<img src='${recipes.recipes[i].image}'>`).appendTo($recipeDiv)
+            const $recipe = $('<dt>').attr('id', `${recipes.recipes[i].title}`).text(`${recipes.recipes[i].title}`).appendTo($recipeDiv)
+            const $recipeDetails = $('<dl>').appendTo($recipeDiv)
+              const $recipeSum = $('<dd>').html(`${recipes.recipes[i].summary}`).appendTo($recipeDetails)
+              const $recipeSiteDD = $('<dd>').appendTo($recipeDetails).appendTo($recipeDetails)
+              const $recipeSite = $('<a>').attr('href', `${recipes.recipes[i].sourceUrl}`).text(`Link to recipe`).appendTo($recipeSiteDD)
+              const $recipeCredit = $('<dd>').text(`Credits: ${recipes.recipes[i].creditsText}`).appendTo($recipeDetails)
         }
 
-        $recipesTotal.eq($currentRecipe).css('display', 'flex').css('flex-direction', 'column').css('align-content', 'center')
+        // Carousel next and previous buttons:
+        let $currentRecipe = 0
+        // will be index of recipe array once it's generated (starting at 0)
+        let $numOfRecipes = $('#recipe_carousel').children().length - 1
+        console.log(`Number of recipes = ${$numOfRecipes}`);
+        // creates an array out of the recipe list
+        const $recipesTotal = $('#recipe_carousel').children()
+        console.log($recipesTotal);
 
+        // Next button:
+        $('#next_recipe').on('click', () => {
+          $('#next_recipe').addClass('pressedButton')
+          setTimeout(() => {
+            $('#next_recipe').removeClass('pressedButton')
+          }, 150)
+          $recipesTotal.eq($currentRecipe).css('display', 'none')
+          if($currentRecipe < $numOfRecipes) {
+            $currentRecipe++
+          } else {
+            $currentRecipe = 0
+          }
+
+          $recipesTotal.eq($currentRecipe).css('display', 'flex').css('flex-direction', 'column').css('align-content', 'center')
+
+        })
+        // Previous button:
+        $('#prev_recipe').on('click', () => {
+          $('#prev_recipe').addClass('pressedButton')
+          setTimeout(() => {
+            $('#prev_recipe').removeClass('pressedButton')
+          }, 150)
+          $recipesTotal.eq($currentRecipe).css('display', 'none')
+          if($currentRecipe > 0) {
+            $currentRecipe--
+          } else {
+            $currentRecipe = $numOfRecipes
+          }
+
+          $recipesTotal.eq($currentRecipe).css('display', 'block')
+
+        })
       })
+  } // End of recipes function
 
-      $('#prev_recipe').on('click', () => {
-        $('#prev_recipe').addClass('pressedButton')
-        setTimeout(() => {
-          $('#prev_recipe').removeClass('pressedButton')
-        }, 250)
-        $recipesTotal.eq($currentRecipe).css('display', 'none')
-        if($currentRecipe > 0) {
-          $currentRecipe--
-        } else {
-          $currentRecipe = $numOfRecipes
-        }
+  $('#get-recipes').on('click', (ev) => {       // Get recipes button
+    ev.preventDefault()
 
-        $recipesTotal.eq($currentRecipe).css('display', 'block')
+    $('#get-recipes').addClass('pressedButton')
+    setTimeout(() => {
+      $('#get-recipes').removeClass('pressedButton')
+    }, 150)
 
-      })
+    $('#recipe_carousel').empty()
 
+    // $('body').css('height', '')
+    // $('body').css('height', 'auto')
 
+    $getRecipes()
 
+  })
+
+  $('h1').on('click', (e) => {
+    e.preventDefault()
+
+    if($('.night-out-container').css('display') === 'flex') {
+
+      $('.night-out-container').css('display', 'none')
+      $('.night-in-container').css('display', 'flex')
+      // $('body').css('height', '')
+      // $('body').css('height', 'auto')
+
+    } else{
+
+      $('.night-in-container').css('display', 'none')
+      $('.night-out-container').css('display', 'flex')
+      // $('body').css('height', '')
+      // $('body').css('height', '100vh')
     }
-  )
+  })
+
+
 
 })

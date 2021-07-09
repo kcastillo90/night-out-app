@@ -13,7 +13,7 @@ $(() => {
     $.ajax({
       async: true,
       crossDomain: true,
-      url: `https://documenu.p.rapidapi.com/restaurants/zip_code/${$zip}?size=30&fullmenu=false&page=2`,
+      url: `https://documenu.p.rapidapi.com/restaurants/zip_code/${$zip}?size=30&fullmenu=false&page=1`,
       method: "GET",
       headers: {
         "x-api-key": "a5da2fb501238f04a7faea97564973b4",
@@ -88,6 +88,12 @@ $(() => {
   // Form submit to activate restaurant retrieval
   $('form').on('submit', (e) => {
     e.preventDefault()
+
+    $('#zip_submitID').addClass('zip_submit_pressed')
+    setTimeout(() => {
+      $('#zip_submitID').removeClass('zip_submit_pressed')
+    }, 150)
+
 
     $getRestaurants()
 

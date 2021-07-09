@@ -29,6 +29,18 @@ h1 {
   color: ivory;
 }
 
+h4  {
+  font-family: 'Tourney', cursive;
+  color: crimson;
+  text-align: center;
+  width: 50vw;
+  height: auto;
+  background: darkturquoise;
+  background-size: contain;
+  padding: 10px;
+  border: 4px solid lightgray;
+}
+
 form {
   text-align: center;
   margin: 5vh;
@@ -47,10 +59,18 @@ form {
   text-align: center;
 }
 
-.zip_button {
-  width: 100px;
+.zip_submit {
+  width: 120px;
   height: 7vh;
   background: lightgray;
+  border: none;
+  margin-left: 5px;
+}
+
+.zip_submit_pressed {
+  width: 120px;
+  height: 7vh;
+  background: lightgoldenrodyellow;
   border: none;
   margin-left: 5px;
 }
@@ -170,6 +190,18 @@ img {
     border: 4px solid ivory;
     border-radius: 10%;
     color: ivory;
+  }
+
+  h4  {
+    font-family: 'Tourney', cursive;
+    color: crimson;
+    text-align: center;
+    width: 30vw;
+    height: auto;
+    background: darkturquoise;
+    background-size: contain;
+    padding: 10px;
+    border: 4px solid lightgray;
   }
 
   form {

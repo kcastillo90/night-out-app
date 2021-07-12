@@ -1,24 +1,32 @@
+let numLat = null
+let numLong = null
+let latitude = ''
+let longitude = ''
+
+const getCoords = (position) => {
+  numLat = position.coords.latitude
+  latitude = numLat.toString()
+  numLong = position.coords.longitude
+  longitude = numLong.toString()
+}
+
+navigator.geolocation.getCurrentPosition(getCoords)
+
+
 $(() => {
 
   // Night Out
-  const $getRestaurants = (e) => {
+  const $getRestaurants = (latitude, longitude) => {
 
-    let $zip = $('input[type="text"]').val() // assigns zip to API URL
-
-    if($zip === '') {
-      alert("Please enter a valid zip code.")
-      return
-    }
 
     $.ajax({
       async: true,
       crossDomain: true,
-      url: `https://documenu.p.rapidapi.com/restaurants/zip_code/${$zip}?size=30&fullmenu=false&page=1`,
+      url: `https://travel-advisor.p.rapidapi.com/restaurants/list-by-latlng?latitude=${latitude}&longitude=${longitude}&limit=10&currency=USD&distance=1&lunit=mi&lang=en_US`,
       method: "GET",
       headers: {
-        "x-api-key": "a5da2fb501238f04a7faea97564973b4",
-        "x-rapidapi-key": "5afdaea20bmsh0c8158b162825e2p1ce46cjsnd2191c7b8519",
-        "x-rapidapi-host": "documenu.p.rapidapi.com"
+        "x-rapidapi-key": "b2f472e935msh7663e7338a2a0ccp163839jsn46d01b6947ed",
+        "x-rapidapi-host": "travel-advisor.p.rapidapi.com"
         }
       }).then(
         (results) => {
@@ -27,77 +35,97 @@ $(() => {
           console.log(results.data);
 
           for(i = 0; i < results.data.length; i++)  {
-            const $restaurantDiv = $('<div>').attr(`id`, `${results.data[i].restaurant_name}`)
-            const $restaurant = $('<dt>').attr(`id`, `${results.data[i].restaurant_name}`).text(`${results.data[i].restaurant_name}`)
-            const $restaurantDetails = $('<dl>')
-              const $cuisine = $('<dd>').text(`${results.data[i].cuisines}`).appendTo($restaurantDetails)
-              const $priceRange = $('<dd>').text(`${results.data[i].price_range}`).appendTo($restaurantDetails)
-              const $hours = $('<dd>').text(`${results.data[i].hours}`).appendTo($restaurantDetails)
-              const $websiteDD = $('<dd>').appendTo($restaurantDetails)
-              const $website = $('<a>').attr('href', `${results.data[i].restaurant_website}`).text(`${results.data[i].restaurant_website}`).appendTo($websiteDD)
-              const $phone = $('<dd>').text(`${results.data[i].restaurant_phone}`).appendTo($restaurantDetails)
-              const $address = $('<dd>').text(`${results.data[i].address.formatted}`).appendTo($restaurantDetails)
-            $restaurantDiv.append($restaurant, $restaurantDetails)
-            $('#restaurant_carousel').append($restaurantDiv)
+            if(results.data[i].hasOwnProperty('ad_position') === true){
+            } else {
+              const $restaurantDiv = $('<div>').attr(`id`, `${results.data[i].name}`)
+              if(results.data[i].hasOwnProperty('photo') === true) {
+                const $restaurantImgDiv = $('<div>').appendTo($restaurantDiv)
+                const $restaurantImg = $(`<img src='${results.data[i].photo.images.small.url}'>`).appendTo($restaurantImgDiv)
+              }
+              const $restaurant = $('<dt>').attr(`id`, `${results.data[i].name}`).text(`${results.data[i].name}`)
+              const $restaurantDetails = $('<dl>')
+                const $priceRange = $('<dd>').text(`${results.data[i].price_level}`).appendTo($restaurantDetails)
+                const $websiteDD = $('<dd>').appendTo($restaurantDetails)
+                const $website = $('<a>').attr('href', `${results.data[i].website}`).text(`${results.data[i].website}`).appendTo($websiteDD)
+                const $phone = $('<dd>').text(`${results.data[i].phone}`).appendTo($restaurantDetails)
+                const $address = $('<dd>').text(`${results.data[i].address}`).appendTo($restaurantDetails)
+              $restaurantDiv.append($restaurant, $restaurantDetails)
+              $('#restaurant_carousel').append($restaurantDiv)
+            }
           }
-          // Carousel next and previous buttons:
-          let $currentRestaurant = 0
-          // will be index of restaurant array once it's generated (starting at 0)
-          let $numOfRestaurants = $('#restaurant_carousel').children().length - 1
-          console.log(`Number of restaurants = ${$numOfRestaurants}`);
-          // creates an array out of the restaurant list
-          const $restaurantsTotal = $('#restaurant_carousel').children()
-          console.log($restaurantsTotal);
 
-          // Next button:
-          $('#next').on('click', () => {
-            $('#next').addClass('pressedButton')
-            setTimeout(() => {
-              $('#next').removeClass('pressedButton')
-            }, 150)
-            $restaurantsTotal.eq($currentRestaurant).css('display', 'none')
-            if($currentRestaurant < $numOfRestaurants) {
-              $currentRestaurant++
-            } else {
-              $currentRestaurant = 0
-            }
-
-            $restaurantsTotal.eq($currentRestaurant).css('display', 'block')
-
-          })
-
-          $('#prev').on('click', () => {
-            $('#prev').addClass('pressedButton')
-            setTimeout(() => {
-              $('#prev').removeClass('pressedButton')
-            }, 150)
-            $restaurantsTotal.eq($currentRestaurant).css('display', 'none')
-            if($currentRestaurant > 0) {
-              $currentRestaurant--
-            } else {
-              $currentRestaurant = $numOfRestaurants
-            }
-
-            $restaurantsTotal.eq($currentRestaurant).css('display', 'block')
-
-          })
       })
-  }         // End of get recipes function
+
+    setTimeout(() => {
+      // Carousel next and previous buttons:
+      let $currentRestaurant = 0
+      // will be index of restaurant array once it's generated (starting at 0)
+      let $numOfRestaurants = $('#restaurant_carousel').children().length - 1
+      console.log(`Number of restaurants = ${$numOfRestaurants}`);
+
+      // creates an array out of the restaurant list
+      const $restaurantsTotal = $('#restaurant_carousel').children()
+      console.log($restaurantsTotal);
+
+
+      // Next button:
+      $('#next').on('click', () => {
+        $('#next').addClass('pressedButton')
+        setTimeout(() => {
+          $('#next').removeClass('pressedButton')
+        }, 150)
+        $restaurantsTotal.eq($currentRestaurant).css('display', 'none')
+        if($currentRestaurant < $numOfRestaurants) {
+          $currentRestaurant++
+        } else {
+          $currentRestaurant = 0
+        }
+
+        $restaurantsTotal.eq($currentRestaurant).css('display', 'block')
+
+      })
+
+      $('#prev').on('click', () => {
+        $('#prev').addClass('pressedButton')
+        setTimeout(() => {
+          $('#prev').removeClass('pressedButton')
+        }, 150)
+        $restaurantsTotal.eq($currentRestaurant).css('display', 'none')
+        if($currentRestaurant > 0) {
+          $currentRestaurant--
+        } else {
+          $currentRestaurant = $numOfRestaurants
+        }
+
+        $restaurantsTotal.eq($currentRestaurant).css('display', 'block')
+
+      })
+    }, 2000)
+  }         // End of get restaurants function
 
 
   // Form submit to activate restaurant retrieval
-  $('form').on('submit', (e) => {
+  $('#get-restaurants-button').on('click', (e) => {
     e.preventDefault()
 
-    $('#zip_submitID').addClass('zip_submit_pressed')
+    alert(`Retrieving results, please wait a few seconds...`)
+
+    $('#get-restaurants-button').addClass('pressedButton')
     setTimeout(() => {
-      $('#zip_submitID').removeClass('zip_submit_pressed')
+      $('#get-restaurants-button').removeClass('pressedButton')
     }, 150)
 
+    $('#restaurant_carousel').empty()
 
-    $getRestaurants()
+    setTimeout(() => {
+
+      $getRestaurants(latitude, longitude)
+
+
+    }, 3000)
 
   })
+
 
   // Night In
 

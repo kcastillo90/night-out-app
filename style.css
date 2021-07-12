@@ -73,17 +73,6 @@ h4  {
   border: 4px solid lightgray;
 }
 
-form {
-  text-align: center;
-  margin: 5vh;
-  width: 80vw;
-  height: 5vh;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-}
-
 .zip {
   width: 60vw;
   height: 7vh;
@@ -207,7 +196,7 @@ img {
     flex-direction: column;
     align-items: center;
     width: 750px;
-    height: 150vh;
+    height: 200vh;
   }
 
   h1 {
